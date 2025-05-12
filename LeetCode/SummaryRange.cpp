@@ -35,7 +35,7 @@ int main()
 
     for (const auto &k : b)
     {
-        cout << k << " ";
+        cout << k << "        ";
     }
 
     return 0;
