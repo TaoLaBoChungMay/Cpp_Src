@@ -28,6 +28,6 @@ int main()
     }
     for (int i = 0; i < j; i++)
     {
-        cout << nums[i] << "  ";
+        cout << nums[i] << "      ";
     }
 }
