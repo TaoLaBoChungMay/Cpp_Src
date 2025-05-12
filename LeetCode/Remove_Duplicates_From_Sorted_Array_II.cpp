@@ -15,7 +15,7 @@ int main()
         nums.push_back(x);
     }
 
-    int j = 1, cnt = 1; // j start index 1 because 'array start index 0'
+    int j = 1, cnt = 1; // j   start index 1 because 'array start index 0'
     for (int i = 1; i < nums.size(); i++)
     {
         if (nums[i] == nums[i - 1]) // check if prefix and suffix same value
