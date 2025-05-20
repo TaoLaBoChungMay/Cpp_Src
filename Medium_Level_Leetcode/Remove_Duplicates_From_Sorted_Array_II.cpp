@@ -14,27 +14,18 @@ int main()
         cin >> x;
         nums.push_back(x);
     }
-    if (nums.size() <= 2)
+    int cnt = 1, j = 1;
+    for (int i = 1; i < nums.size(); i++)
     {
-        for (auto const k : nums)
-        {
-            cout << k << " ";
-        }
-        return 0;
-    }
-
-    int j = 2;
-    for (int i = 2; i < nums.size(); i++)
-    {
-        if (nums[i] != nums[i - 2])
+        if (nums[i] == nums[i - 1])
+            cnt++;
+        else
+            cnt = 1;
+        if (cnt <= 2)
         {
             nums[j] = nums[i];
             j++;
         }
     }
-
-    for (auto const k : nums)
-    {
-        cout << k << " ";
-    }
+    cout << j;
 }
