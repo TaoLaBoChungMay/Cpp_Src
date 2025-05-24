@@ -5,7 +5,7 @@ using namespace std;
 int main()
 {
     string s, t;
-
+    int j = 0, i = 0;
     cin >> s >> t;
     if (s == "" && t == "")
     {
