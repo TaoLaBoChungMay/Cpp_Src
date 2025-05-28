@@ -1,26 +1,21 @@
 #include <iostream>
-#include <map>
 #include <unordered_map>
-
 using namespace std;
 
 int main()
 {
     string jewels, stones;
     cin >> jewels >> stones;
-
-    unordered_map<char, int> mp;
-
+    unordered_map<char, int> mpp;
     for (auto const c : jewels)
     {
-        mp[c]++;
+        mpp[c]++;
     }
-    int cnt = 0;
+    int count = 0;
     for (int i = 0; i < stones.size(); i++)
     {
-        if (mp.find(stones[i]) != mp.end())
-            cnt++;
+        if (mpp.find(stones[i]) != mpp.end())
+            count++;
     }
-
-    cout << cnt;
+    cout << count;
 }
