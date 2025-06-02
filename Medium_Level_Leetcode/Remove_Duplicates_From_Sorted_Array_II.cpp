@@ -14,10 +14,10 @@ int main()
         cin >> x;
         nums.push_back(x);
     }
-    int cnt = 1, j = 1;
+    int j = 1, cnt = 1;
     for (int i = 1; i < nums.size(); i++)
     {
-        if (nums[i] == nums[i - 1])
+        if (nums[i - 1] == nums[i])
             cnt++;
         else
             cnt = 1;

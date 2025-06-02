@@ -8,11 +8,11 @@ int main()
     string s;
     int numRows;
     cin >> s >> numRows;
-    int current = 0, step = 1;
-    vector<string> Zigzag(numRows);
+    int step = 1, current = 0;
+    vector<string> a(numRows);
     for (auto const c : s)
     {
-        Zigzag[current].push_back(c);
+        a[current].push_back(c);
         if (current == 0)
             step = 1;
         else if (current == numRows - 1)
@@ -20,9 +20,7 @@ int main()
         current += step;
     }
     string result = "";
-    for (auto const c : Zigzag)
-    {
+    for (auto const c : a)
         result += c;
-    }
     cout << result;
 }
