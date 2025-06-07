@@ -6,18 +6,20 @@ int main()
 {
     string s, t;
     cin >> s >> t;
-    int a[100];
-    if (s.size() != t.size())
+    if (s.length() != t.length())
+    {
         return 0;
-    for (auto const c : s)
+    }
+    int a[100];
+    fill(a, a + 100, 0);
+    for (char c : s)
         a[c - 'a']++;
-    for (auto const c : t)
+
+    for (char c : t)
     {
         a[c - 'a']--;
         if (a[c - 'a'] < 0)
-        {
             return 0;
-        }
     }
     return 1;
 }
