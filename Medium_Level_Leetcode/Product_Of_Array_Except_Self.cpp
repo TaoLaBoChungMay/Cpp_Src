@@ -28,5 +28,10 @@ int main()
         result[i] *= right;
         right *= nums[i];
     }
+
+    for (auto const n : result)
+    {
+        cout << n << " ";
+    }
     return 0;
 }

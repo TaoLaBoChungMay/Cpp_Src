@@ -6,8 +6,8 @@ using namespace std;
 int main()
 {
     int n;
-    cin >> n;
     vector<int> nums;
+    cin >> n;
     for (int i = 0; i < n; i++)
     {
         int x;
@@ -15,20 +15,14 @@ int main()
         nums.push_back(x);
     }
 
-    // SelectionSort
-    for (int i = 0; i < nums.size() - 1; i++)
+    int j = 1;
+    for (int i = 1; i < nums.size(); i++)
     {
-        int vt = i;
-        for (int j = i + 1; j < nums.size(); j++)
+        j = i;
+        while (j > 0 && nums[j - 1] > nums[j])
         {
-            if (nums[j] < nums[vt])
-                vt = j;
+            swap(nums[j], nums[j - 1]);
+            --j;
         }
-        swap(nums[i], nums[vt]);
     }
-    for (auto const k : nums)
-    {
-        cout << k << " ";
-    }
-    return 0;
 }

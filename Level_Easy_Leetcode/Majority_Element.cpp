@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-
+#include <map>
 using namespace std;
 
 int main()
@@ -14,18 +14,19 @@ int main()
         cin >> x;
         nums.push_back(x);
     }
-    int j = 1, cnt = 1;
-    for (int i = 1; i < nums.size(); i++)
+    int ans = 0;
+    int cnt = 0;
+    for (auto const n : nums)
     {
-        if (nums[i - 1] == nums[i])
+        if (cnt == 0)
+        {
+            ans = n;
+            cnt = 1;
+        }
+        else if (ans == n)
             cnt++;
         else
-            cnt = 1;
-        if (cnt <= 2)
-        {
-            nums[j] = nums[i];
-            j++;
-        }
+            cnt--;
     }
-    cout << j;
+    cout << ans;
 }
