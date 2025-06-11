@@ -24,7 +24,9 @@ int main()
             cout << i << " " << mpp[k];
             return 0;
         }
-        mpp[nums[i]] = i;
+        else
+            mpp[nums[i]] = i;
     }
+
     return 0;
 }
