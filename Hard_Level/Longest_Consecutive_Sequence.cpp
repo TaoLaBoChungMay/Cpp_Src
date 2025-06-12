@@ -20,29 +20,30 @@ int main()
 
     unordered_map<int, bool> mpp;
     for (auto const n : nums)
+    {
         mpp[n] = false;
-    int Max_Length = 0;
-
+    }
+    int Max = 0;
     for (auto const n : nums)
     {
         int length = 1;
-        // CHeck if forward sequence
+        // check forward sequence
         int nextNum = n + 1;
         while (mpp.find(nextNum) != mpp.end() && mpp[nextNum] == false)
         {
             mpp[nextNum] = true;
-            length++;
             nextNum++;
+            length++;
         }
-        // CHeck if pre sequence
+        // check preNum if possible sequence
         int preNum = n - 1;
         while (mpp.find(preNum) != mpp.end() && mpp[preNum] == false)
         {
             mpp[preNum] = true;
-            length++;
             preNum--;
+            length++;
         }
-        Max_Length = max(Max_Length, length);
+        Max = max(Max, length);
     }
-    cout << Max_Length;
+    cout << Max;
 }
