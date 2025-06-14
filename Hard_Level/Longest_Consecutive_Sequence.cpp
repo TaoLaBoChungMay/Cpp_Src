@@ -24,7 +24,7 @@ int main()
         mpp[n] = false;
     }
     int Max = 0;
-    for (auto const n : nums)
+    for (auto const n : s)
     {
         int length = 1;
         // check forward sequence
