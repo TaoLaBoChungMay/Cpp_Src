@@ -17,33 +17,32 @@ int main()
         cin >> x;
         nums.push_back(x);
     }
-
-    unordered_map<int, bool> mpp;
+    int Max_Length = 0;
+    unordered_map<int, int> mpp;
+    for (int i = 0; i < nums.size(); i++)
+    {
+        mpp[nums[i]] = false;
+    }
     for (auto const n : nums)
     {
-        mpp[n] = false;
-    }
-    int Max = 0;
-    for (auto const n : s)
-    {
-        int length = 1;
-        // check forward sequence
-        int nextNum = n + 1;
-        while (mpp.find(nextNum) != mpp.end() && mpp[nextNum] == false)
+        // Check forward
+        int next = n + 1;
+        int l = 1;
+        while (mpp.find(next) != mpp.end() && mpp[next] == false)
         {
-            mpp[nextNum] = true;
-            nextNum++;
-            length++;
+            mpp[next] = true;
+            next++;
+            l++;
         }
-        // check preNum if possible sequence
-        int preNum = n - 1;
-        while (mpp.find(preNum) != mpp.end() && mpp[preNum] == false)
+        // Check pre
+        int pre = n - 1;
+        while (mpp.find(pre) != mpp.end() && mpp[pre] == false)
         {
-            mpp[preNum] = true;
-            preNum--;
-            length++;
+            mpp[pre] = true;
+            pre--;
+            l++;
         }
-        Max = max(Max, length);
+        Max_Length = max(Max_Length, l);
     }
-    cout << Max;
+    cout << Max_Length;
 }

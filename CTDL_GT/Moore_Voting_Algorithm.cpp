@@ -13,7 +13,7 @@ int main()
             ans = n;
             cnt = 1;
         }
-        else if (ans == n)
+        if (ans == n)
             cnt++;
         else
             cnt--;
