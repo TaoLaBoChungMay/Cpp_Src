@@ -16,7 +16,7 @@ int main()
     }
     sort(nums.begin(), nums.end());
     int closest = 1e9;
-    for (int i = 0; i < nums.size(); -2 i++)
+    for (int i = 0; i < nums.size() - 2; i++)
     {
         int left = i + 1, right = nums.size() - 1;
         while (left < right)
@@ -26,10 +26,10 @@ int main()
                 return sum;
             else if (abs(sum - target) < abs(closest - target))
                 closest = sum;
+            else if (sum > target)
+                right--;
             else if (sum < target)
                 left++;
-            else
-                right--;
         }
     }
     return closest;
