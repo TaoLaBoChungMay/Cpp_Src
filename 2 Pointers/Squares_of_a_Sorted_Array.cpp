@@ -14,22 +14,21 @@ int main()
         cin >> x;
         nums.push_back(x);
     }
-
     int left = 0, right = nums.size() - 1;
-    vector<int> squares;
+    vector<int> sortedSquares;
     while (left <= right)
     {
-        if (abs(nums[left]) < abs(nums[right]))
+        if (abs(nums[left]) > abs(nums[right]))
         {
-            squares.push_back(nums[right] * nums[right]);
-            right--;
+            sortedSquares.push_back(nums[left] * nums[left]);
+            left++;
         }
         else
         {
-            squares.push_back(nums[left] * nums[left]);
-            left++;
+            sortedSquares.push_back(nums[right] * nums[right]);
+            right--;
         }
     }
-    reverse(squares.begin(), squares.end());
-    return squares;
+    revere(sortedSquares.begin(), sortedSquares.end());
+    return sortedSquares;
 }

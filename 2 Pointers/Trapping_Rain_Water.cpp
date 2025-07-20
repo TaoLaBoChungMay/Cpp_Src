@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-
+#include <algorithm>
 using namespace std;
 
 int main()
@@ -14,22 +14,23 @@ int main()
         cin >> x;
         height.push_back(x);
     }
-    int trap = 0;
     int left = 0, right = height.size() - 1;
-    int M_L = height[left], M_R = height[right];
+    int Max_Left = height[left], Max_Right = height[right];
+    int trap = 0;
     while (left < right)
     {
-        if (M_L <= M_R)
+        // Thuật toán Max_Left < Max_Right
+        if (Max_Left <= Max_Right)
         {
-            trap += max(0, M_L - height[left]);
+            trap += max(0, Max_Left - height[left]);
             left++;
-            M_L = max(M_L, height[left]);
+            Max_Left = max(height[left], Max_Left);
         }
         else
         {
-            trap += max(0, M_R - height[right]);
+            trap += max(0, Max_Right - height[right]);
             right--;
-            M_R = max(M_R, height[right]);
+            Max_Right = max(height[right], Max_Right);
         }
     }
     cout << trap;
