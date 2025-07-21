@@ -15,43 +15,38 @@ int main()
         cin >> s;
         operations.push_back(s);
     }
-    stack<int> st;
+    int sum = 0;
     int i = 0;
-    int top1, top2, top;
+    vector<int> calPoints;
     while (i < operations.size())
     {
         if (operations[i] == "+")
         {
-            top1 = st.top();
-            st.pop();
-            top2 = st.top();
-            st.push(top1);
-            st.push(top1 + top2);
+            int a = (calPoints[calPoints.size() - 1]);
+            int b = (calPoints[calPoints.size() - 2]);
+            calPoints.push_back(a + b);
         }
         else if (operations[i] == "D")
         {
-            top = st.top();
-            st.push(top * 2);
+            int c = (calPoints[calPoints.size() - 1]);
+            c *= 2;
+            calPoints.push_back(c);
         }
         else if (operations[i] == "C")
         {
-            top = st.top();
-            st.pop();
+            calPoints.pop_back();
         }
         else
         {
-            st.push(stoi(operations[i]));
+            int x = stoi(operations[i]);
+            calPoints.push_back(x);
         }
         i++;
     }
-    int sum = 0;
-    while (!st.empty())
+    for (auto const n : calPoints)
     {
-        int a = st.top();
-        sum += a;
-        st.pop();
+        sum += n;
     }
-
     cout << sum;
     return 0;
 }
