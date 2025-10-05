@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <stack>
+
 using namespace std;
 
 int main()
@@ -8,45 +8,41 @@ int main()
     int n;
     cin >> n;
     vector<string> operations;
-
     for (int i = 0; i < n; i++)
     {
         string s;
         cin >> s;
         operations.push_back(s);
     }
+
+    vector<int> result;
     int sum = 0;
-    int i = 0;
-    vector<int> calPoints;
-    while (i < operations.size())
+    for (auto const c : operations)
     {
-        if (operations[i] == "+")
+        if (c == "+")
         {
-            int a = (calPoints[calPoints.size() - 1]);
-            int b = (calPoints[calPoints.size() - 2]);
-            calPoints.push_back(a + b);
+            int a = result[result.size() - 1];
+            int b = result[result.size() - 2];
+            result.push_back(a + b);
+            sum += a + b;
         }
-        else if (operations[i] == "D")
+        else if (c == "D")
         {
-            int c = (calPoints[calPoints.size() - 1]);
-            c *= 2;
-            calPoints.push_back(c);
+            int a = result[result.size() - 1];
+            sum += a * 2;
+            result.push_back(a * 2);
         }
-        else if (operations[i] == "C")
+        else if (c == "C")
         {
-            calPoints.pop_back();
+            sum -= result[result.size() - 1];
+            result.pop_back();
         }
         else
         {
-            int x = stoi(operations[i]);
-            calPoints.push_back(x);
+            int x = stoi(c);
+            sum += x;
+            result.push_back(x);
         }
-        i++;
-    }
-    for (auto const n : calPoints)
-    {
-        sum += n;
     }
     cout << sum;
-    return 0;
 }
