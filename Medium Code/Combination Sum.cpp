@@ -21,7 +21,7 @@ vector<vector<int>> xuly(int n, int target, vector<int> candicates)
     for (int i = 0; i < candicates.size(); i++)
     {
         sum += candicates[i];
-        xuly()
+        xuly();
     }
 }
 int main()

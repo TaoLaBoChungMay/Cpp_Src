@@ -25,7 +25,7 @@ int main()
                 continue;
 
             int sum = nums[left] + nums[right] + nums[i];
-            if (sum ==)
+            if (sum == 0)
             {
                 three_Sum.push_back({nums[left], nums[right], nums[i]});
                 left++;

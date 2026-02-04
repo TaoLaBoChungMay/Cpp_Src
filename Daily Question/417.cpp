@@ -3,68 +3,64 @@
 
 using namespace std;
 
-// Trái - Phải  -  Trên - Dưới
 vector<vector<int>> dirs = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
 
-void dfs(vector<vector<int>> &map, int r, int c, vector<vector<bool>> &visited)
+void dfs(int r, int c, vector<vector<int>> &map, vector<vector<bool>> &visited)
 {
     visited[r][c] = true;
-    for (auto dir : dirs) // Bắt đầu duyệt từng hướng
+    for (auto dir : dirs)
     {
-        int Nr = r + dir[0];
-        int Nc = c + dir[1];
-        if (Nc < 0 || Nr < 0 || Nr > map.size() || Nc >= map[0].size())
+        int nr = r + dir[0];
+        int nc = c + dir[1];
+
+        if (nr < 0 || nc < 0 || nr >= map[0].size() || nc >= map.size()) // Vượt biên
             continue;
-        if (visited[Nr][Nc] || map[r][c] > map[Nr][Nc])
+        if (map[nr][nc] < map[r][c])
             continue;
 
-        dfs(map, Nr, Nc, visited);
+        if (visited[nr][nc])
+            continue;
+
+        dfs(nr, nc, map, visited);
     }
 }
 
 int main()
 {
-    int m, n;
+    int n, m;
+
     cin >> m >> n;
+    vector<vector<int>> height(m, vector<int>(n));
 
-    vector<vector<int>> heights(m, vector<int>(n));
     for (int i = 0; i < m; i++)
         for (int j = 0; j < n; j++)
-            cin >> heights[i][j];
+            cin >> height[i][j];
 
-    m = heights.size();
-    n = heights[0].size();
+    // Pac : Trên và trái
+    vector<vector<bool>> Pac(m, vector<bool>(n, false));
 
-    // Pacific ở góc trên và trái
-    vector<vector<bool>> pac(m, vector<bool>(n, false));
+    for (int i = 0; i < n; i++) // Hàng trên cùng
+        dfs(0, i, height, Pac);
 
-    for (int i = 0; i < n; i++) // Hàng trên
-        dfs(heights, 0, i, pac);
     for (int i = 0; i < m; i++) // Cạnh trái
-        dfs(heights, i, 0, pac);
+        dfs(i, 0, height, Pac);
 
-    // Atlantic ở góc dưới và trái
-    vector<vector<bool>> alt(m, vector<bool>(n, false));
+    // Alt : Trên và trái
+    vector<vector<bool>> Alt(m, vector<bool>(n, false));
 
-    for (int i = 0; i < n; i++) // Hàng dưới
-        dfs(heights, m - 1, i, alt);
-    for (int i = 0; i < m; i++) // Cạnh trái
-        dfs(heights, i, n - 1, alt);
+    for (int i = 0; i < m; i++) // Cạnh phải
+        dfs(i, n - 1, height, Alt);
 
-    vector<vector<int>> res;
+    for (int i = 0; i < n; i++) // Hàng dưới cùng
+        dfs(m - 1, i, height, Alt);
+
+    vector<vector<int>> pacificAtlantic;
     for (int i = 0; i < m; i++)
-    {
         for (int j = 0; j < n; j++)
-        {
-            if (pac[i][j] && alt[i][j])
+            if (Pac[i][j] && Alt[i][j])
             {
-                res.push_back({i, j});
+                pacificAtlantic.push_back({i, j});
             }
-        }
-    }
 
-    for (auto &p : res)
-        cout << p[0] << " " << p[1] << endl;
-
-    return 0;
+    return pacificAtlantic;
 }
