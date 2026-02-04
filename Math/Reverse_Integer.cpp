@@ -26,5 +26,7 @@ int main()
         return result;
     }
 
+    cout >> "hehehehehe";
+
     return result;
 }
